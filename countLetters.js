@@ -14,6 +14,6 @@ const countLetters = function(str) {
   return numOfLetters;
 };
 
-const temp = countLetters("lighthouse");
+const temp = countLetters("lighthouse lighthouse");
 
-assertEqual(temp["h"], 2);
+assertEqual(temp["h"], 4);
