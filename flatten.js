@@ -3,45 +3,40 @@ const eqArrays = require("./eqArrays.js");
 
 const flatten = function(arr) {
 
+  let data = [];
+  data = data.concat(arr);
   let arrFlat = [];
-  arrFlat = arrFlat.concat(arr);
 
-  for (let i = 0; i < arrFlat.length; i++) {
+  for (let i = 0; i < data.length; i++) {
 
-    if (Array.isArray(arrFlat[i])) {
+    if (Array.isArray(data[i])) {
 
-      let notToReplace = arrFlat[i + 1];
       let frontReplace = 0;
-
-      arrNested = [];
-      arrNested = arrNested.concat(arrFlat[i]);
-
-      arrFlat.splice(i, 1);
+      arrNested = [...data[i]];
 
       for (let x = 0; x < arrNested.length; x++) {
 
         if (Array.isArray(arrNested[x])) {
 
-          arrNested = flatten(arrNested);
+          let arrNestFlat = [...arrNested];
+          arrNestFlat = flatten(arrNestFlat);
 
-          if (arrFlat[i] === notToReplace) {
-            arrFlat.splice(i, 0, ...arrNested);
-          } else {
-            arrFlat.splice(i, frontReplace, ...arrNested);
-          }
+          arrNestFlat = arrNestFlat.slice(frontReplace);
 
-          notToReplace = undefined;
+          arrFlat.push(...arrNestFlat);
           break;
           
         } else {
-          arrFlat.splice(i + x, 0, arrNested[x]);
+          arrFlat.push(arrNested[x]);
           frontReplace++;
         }
       }
+    } else {
+      arrFlat.push(data[i]);
     }
     
   }
   return arrFlat;
 };
 
-assertArraysEqual(flatten([1, 2, [[3, 11, 22, [9, 8, [7, 123]]], 4], 5, [[[6]]], 20, 12, [12, [[234, 125, [23]], 44, 11], 1, 26]]), [1, 2, 3, 11, 22, 9, 8, 7, 123, 4, 5, 6, 20, 12, 12, 234, 125, 23, 44, 11, 1, 26]);
+assertArraysEqual(flatten([1, 2, [[3, 11, 22, [9, 8, [7, 123]]], 4, 44], 22, 5, [[[6]]]]), [1, 2, 3, 11, 22, 9, 8, 7, 123, 4, 44, 22, 5, 6]);
