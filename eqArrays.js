@@ -1,7 +1,11 @@
 const assertEqual = require("./assertEqual.js");
 
 const eqArrays = function(arrOne, arrTwo) {
-  if (arrOne.length != arrTwo.length) {
+  if (arrOne === undefined && arrTwo === undefined) {
+    return true;
+  } else if (arrOne === undefined || arrTwo === undefined) {
+    return false;
+  } else if (arrOne.length != arrTwo.length) {
     return false;
   }
   for (let i = 0; i < arrOne.length; i++) {
