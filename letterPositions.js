@@ -6,7 +6,7 @@ const letterPositions = function(str) {
   positions = {};
 
   for (let i = 0; i < letters.length; i++) {
-    if (positions[letters[i]] === undefined) {
+    if (!positions[letters[i]]) {
       positions[letters[i]] = [];
     }
     positions[letters[i]].push(i);
