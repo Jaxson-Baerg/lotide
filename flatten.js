@@ -7,16 +7,16 @@ const flatten = function(arr) {
   data = data.concat(arr);
   let arrFlat = [];
 
-  for (let i = 0; i < data.length; i++) {
+  for (let val of data) {
 
-    if (Array.isArray(data[i])) {
+    if (Array.isArray(val)) {
 
       let frontReplace = 0;
-      arrNested = [...data[i]];
+      arrNested = [...val];
 
-      for (let x = 0; x < arrNested.length; x++) {
+      for (el of arrNested) {
 
-        if (Array.isArray(arrNested[x])) {
+        if (Array.isArray(el)) {
 
           let arrNestFlat = [...arrNested];
           arrNestFlat = flatten(arrNestFlat);
@@ -27,12 +27,12 @@ const flatten = function(arr) {
           break;
           
         } else {
-          arrFlat.push(arrNested[x]);
+          arrFlat.push(el);
           frontReplace++;
         }
       }
     } else {
-      arrFlat.push(data[i]);
+      arrFlat.push(val);
     }
     
   }
@@ -40,3 +40,9 @@ const flatten = function(arr) {
 };
 
 assertArraysEqual(flatten([1, 2, [[3, 11, 22, [9, 8, [7, 123]]], 4, 44], 22, 5, [[[6]]]]), [1, 2, 3, 11, 22, 9, 8, 7, 123, 4, 44, 22, 5, 6]);
+
+// More Recursion compass assignment
+const temp = flatten(["A", ["B", "C"], "D", "E"]);
+for (el of temp) {
+  console.log(el);
+}
