@@ -1,42 +1,15 @@
 const assertArraysEqual = require("./assertArraysEqual.js");
-const eqArrays = require("./eqArrays.js");
 
-const flatten = function(arr) {
-
-  let data = [];
-  data = data.concat(arr);
-  let arrFlat = [];
-
-  for (let val of data) {
-
-    if (Array.isArray(val)) {
-
-      let frontReplace = 0;
-      arrNested = [...val];
-
-      for (el of arrNested) {
-
-        if (Array.isArray(el)) {
-
-          let arrNestFlat = [...arrNested];
-          arrNestFlat = flatten(arrNestFlat);
-
-          arrNestFlat = arrNestFlat.slice(frontReplace);
-
-          arrFlat.push(...arrNestFlat);
-          break;
-          
-        } else {
-          arrFlat.push(el);
-          frontReplace++;
-        }
-      }
-    } else {
-      arrFlat.push(val);
+const flatten = function(array) {
+  let flat = [];
+  for (let el of array) {
+    if (Array.isArray(el)) {
+      flat.push(...flatten(el));
+      continue;
     }
-    
+    flat.push(el);
   }
-  return arrFlat;
+  return flat;
 };
 
 assertArraysEqual(flatten([1, 2, [[3, 11, 22, [9, 8, [7, 123]]], 4, 44], 22, 5, [[[6]]]]), [1, 2, 3, 11, 22, 9, 8, 7, 123, 4, 44, 22, 5, 6]);
