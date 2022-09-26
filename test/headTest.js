@@ -1,11 +1,11 @@
 const assert = require("chai").assert;
-const head = require("../head.js");
+const _ = require("../index.js");
 
 describe("#head", () => {
   it("returns 5 for [5, 6, 7]", () => {
-    assert.strictEqual(head([5, 6, 7]), 5);
+    assert.strictEqual(_.head([5, 6, 7]), 5);
   });
   it("returns 'Hello' for ['Hello', 'Lighthouse', 'Labs']", () => {
-    assert.strictEqual(head(["Hello", "Lighthouse", "Labs"]), "Hello");
+    assert.strictEqual(_.head(["Hello", "Lighthouse", "Labs"]), "Hello");
   });
 });

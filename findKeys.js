@@ -8,7 +8,7 @@ const findKeys = function(obj, func) {
   }
 };
 
-module.exports = findKey;
+module.exports = findKeys;
 
 /*
 assertEqual(findKeys({

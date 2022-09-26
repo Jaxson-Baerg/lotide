@@ -7,7 +7,7 @@ const lotide = {
   map: require("./map.js"),
   flatten: require("./flatten.js"),
   letterPositions: require("./letterPositions.js"),
-  findKey: require("./findKey.js"),
+  findKeys: require("./findKeys.js"),
   findKeyByValue: require("./findKeyByValue.js"),
   countOnly: require("./countOnly.js"),
   countLetters: require("./countLetters.js"),

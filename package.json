@@ -1,7 +1,7 @@
 {
-  "name": "lotide",
+  "name": "@jaxson_baerg/lotide",
   "version": "1.0.0",
-  "description": "",
+  "description": "A learning project created for Lighthouse Labs, designed to be a mini-clone of Lodash",
   "main": "assertArraysEqual.js",
   "directories": {
     "test": "test"
@@ -14,7 +14,7 @@
     "url": "git+https://github.com/Jaxson-Baerg/lotide.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jaxson Baerg",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Jaxson-Baerg/lotide/issues"

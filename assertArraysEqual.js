@@ -9,8 +9,3 @@ const assertArraysEqual = function(arrOne, arrTwo) {
 };
 
 module.exports = assertArraysEqual; // Export assert function to use elsewhere
-
-/*
-assertArraysEqual([1, 2, 3], [1, 2, 3]);
-assertArraysEqual([1, 2, 3], [1, 2, "3"]);
-*/
