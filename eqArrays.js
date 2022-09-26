@@ -1,5 +1,4 @@
-const assertEqual = require("./assertEqual.js"); // Pull assert and eqObjects to test and check if objects within array are equal
-const eqObjects = require("./eqObjects.js");
+const eqObjects = require("./eqObjects.js"); // Pull eqObjects to check if objects within array are equal
 
 const eqArrays = function(arrOne, arrTwo) {
   if (!arrOne || !arrTwo) { // Fail safes to check if arrays are unequal on the surface
@@ -25,11 +24,3 @@ const eqArrays = function(arrOne, arrTwo) {
 };
 
 module.exports = eqArrays; // Export eq function to be used elsewhere
-
-/*
-assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true);
-assertEqual(eqArrays([1, 2, 3], [3, 2, 1]), false);
-
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", "3"]), true);
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", 3]), false);
-*/
