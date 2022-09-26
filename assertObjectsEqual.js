@@ -5,11 +5,11 @@ const assertObjectsEqual = function(objOne, objTwo) {
 
   if (eqObjects(objOne, objTwo)) { // Call eqObjects function
     console.log(`🟩🟩🟩  Assertion Passed: ${inspect(objOne)} === ${inspect(objTwo)}`);
+    return true;
   } else {
     console.log(`🟥🟥🟥  Assertion Failed: ${inspect(objOne)} !=== ${inspect(objTwo)}`);
+    return false;
   }
 };
 
 module.exports = assertObjectsEqual; // Export assert function to use elsewhere
-
-// assertObjectsEqual({ c: "1", d: ["2", [3, 4]] }, { d: ["2", [3, 4]], c: "1" });

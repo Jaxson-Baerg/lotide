@@ -3,8 +3,10 @@ const eqArrays = require("./eqArrays.js"); // Pull eqArrays function to test if 
 const assertArraysEqual = function(arrOne, arrTwo) {
   if (eqArrays(arrOne, arrTwo)) { // Call eqArrays function
     console.log(`🟩🟩🟩  Assertion Passed: ${arrOne} === ${arrTwo}`);
+    return true;
   } else {
     console.log(`🟥🟥🟥  Assertion Failed: ${arrOne} !=== ${arrTwo}`);
+    return false;
   }
 };
 

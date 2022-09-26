@@ -1,8 +1,32 @@
-const assertEqual = require("./assertEqual.js"); // Pull in assert and eq function for test cases and to check if nesting is equal
-const eqArrays = require("./eqArrays.js");
+const eqArrays = function(arrOne, arrTwo) { // Pasted eqArrays function to avoid circular dependancy with master index object
+  if (!arrOne || !arrTwo) { // Fail safes to check if arrays are unequal on the surface
+    return false;
+  } else if (arrOne.length != arrTwo.length) {
+    return false;
+  }
+
+  for (let i = 0; i < arrOne.length; i++) { // Loop through each element of both arrays, given they are the same length
+    // If elements are a nested array
+    if (Array.isArray(arrOne[i]) && Array.isArray(arrTwo[i])) {
+      if (!eqArrays(arrOne[i], arrTwo[i])) { return false }
+    // If elements are a nested object
+    } else if ((typeof arrOne[i] === "object" && !Array.isArray(arrOne[i]) && arrOne[i] !== null) && (typeof arrTwo[i] === "object" && !Array.isArray(arrTwo[i]) && arrTwo[i] !== null)) {
+      if (!eqObjects(arrOne[i], arrTwo[i])) { return false }
+    // If elements do not match array status
+    } else if ((Array.isArray(arrOne[i]) && !Array.isArray(arrTwo[i])) || (!Array.isArray(arrOne[i]) && Array.isArray(arrTwo[i]))) {
+      return false;
+    // If elements are primitive data and do not match
+    } else if (arrOne[i] !== arrTwo[i]) { return false }
+  }
+  return true;
+};
 
 const eqObjects = function(objOne, objTwo) {
-  for (key in objOne) { // Loop through each key in objects
+  const keysOne = Object.keys(objOne);
+  const keysTwo = Object.keys(objTwo);
+  if (keysOne.length !== keysTwo.length) { return false }
+
+  for (let key of keysOne) { // Loop through each key in objects
     // If key has nested object
     if ((typeof objOne[key] === "object" && !Array.isArray(objOne[key]) && objOne[key] !== null) && (typeof objTwo[key] === "object" && !Array.isArray(objTwo[key]) && objTwo[key] !== null)) {
       if (!eqObjects(objOne[key], objTwo[key])) { return false }
@@ -20,25 +44,3 @@ const eqObjects = function(objOne, objTwo) {
 };
 
 module.exports = eqObjects; // Export eq function to be used elsewhere
-
-/*
-const cd = { c: "1", d: ["2", 3] };
-const dc = { d: ["2", 3], c: "1" };
-assertEqual(eqObjects(cd, dc), true); // => true
-
-const cd2 = { c: "1", d: ["2", 3, 4] };
-assertEqual(eqObjects(cd, cd2), false); // => false
-*/
-
-/*
-const cd = { c: "1", d: ["2", [3, 4]] };
-const dc = { d: ["2", [3, 4]], c: "1" };
-assertEqual(eqObjects(cd, dc), true); // => true
-*/
-
-/*
-assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), true); // => true
-
-assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), false); // => false
-assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }), false); // => false
-*/
