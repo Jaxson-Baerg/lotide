@@ -1,8 +1,8 @@
-const assertEqual = require("./assertEqual.js");
+const assertEqual = require("./assertEqual.js"); // Pull assert function for test cases
 
 const findKeys = function(obj, func) {
-  for (key in obj) {
-    if (func(obj[key])) {
+  for (key in obj) { // Loop through each key
+    if (func(obj[key])) { // Apply passed function to key
       return key;
     }
   }

@@ -1,17 +1,14 @@
-const assertEqual = require("./assertEqual.js");
+const assertEqual = require("./assertEqual.js"); // Pull assert function for test cases
 
 const countOnly = function(data, count) {
-  const dataToCount = [...data];
-  const countArr = Object.keys(count);
-  let counted = {};
+  const dataToCount = [...data]; // Copy over inputed array
+  const countArr = Object.keys(count); // Get all keys 
+  let counted = {}; // Initialize return object
 
-  for (let i = 0; i < dataToCount.length; i++) {
-    for (let x = 0; x < countArr.length; x++) {
-      if (dataToCount[i] === countArr[x] && count[countArr[x]] === true) {
-        if (counted[countArr[x]] === undefined) {
-          counted[countArr[x]] = 0;
-        }
-        counted[countArr[x]] += 1;
+  for (let nameKey of dataToCount) { // Loop through each element in the array to count from
+    for (let countKey of countArr) { // Loop through each key in the object argument
+      if (nameKey === countKey && count[countKey]) { // Check if element and key equal and if key is to be counted
+        !counted[countKey] ? counted[countKey] = 1 : counted[countKey] += 1; // Ternary to initialize new key or iterate by one
       }
     }
   }

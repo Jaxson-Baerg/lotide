@@ -1,8 +1,8 @@
-const assertEqual = require("./assertEqual.js");
+const assertEqual = require("./assertEqual.js"); // Pull assert function for test cases
 
 const findKeyByValue = function(obj, val) {
-  for (const key in obj) {
-    if (obj[key] === val) {
+  for (const key in obj) { // Loop through each key in passed object
+    if (obj[key] === val) { // If the key has the same value as passed value
       return key;
     }
   }
@@ -10,7 +10,7 @@ const findKeyByValue = function(obj, val) {
   return undefined;
 };
 
-
+/*
 const bestTVShowsByGenre = { 
   sci_fi: "The Expanse",
   comedy: "Brooklyn Nine-Nine",
@@ -19,3 +19,4 @@ const bestTVShowsByGenre = {
 
 assertEqual(findKeyByValue(bestTVShowsByGenre, "The Wire"), "drama");
 assertEqual(findKeyByValue(bestTVShowsByGenre, "That '70s Show"), undefined);
+*/

@@ -1,14 +1,12 @@
-const assertArraysEqual = require("./assertArraysEqual.js");
-const eqArrays = require("./eqArrays.js");
-
+const assertArraysEqual = require("./assertArraysEqual.js"); // Pull assert function for test cases
 
 const without = function(data, dataToRemove) {
-  let dataWithout = [...data];
-  for (let i = 0; i < data.length; i++) {
-    for (let x = 0; x < dataToRemove.length; x++) {
-      if (dataWithout[i] === dataToRemove[x]) {
-        dataWithout.splice(i, 1);
-        i--;
+  let dataWithout = [...data]; // Copy over passed array
+  for (let i = 0; i < data.length; i++) { // Loop through each element in passed array to remove from
+    for (let el of dataToRemove) { // Loop through each element in passed array to remove
+      if (dataWithout[i] === el) {
+        dataWithout.splice(i, 1); // Remove elements that match
+        i--; // Jump back due to splice removing element
       }
     }
   }
