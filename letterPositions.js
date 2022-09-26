@@ -15,6 +15,8 @@ const letterPositions = function(str) {
   return positions;
 };
 
+module.exports = letterPositions;
+
 /*
 const temp = letterPositions("lighthouse in the house");
 

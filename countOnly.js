@@ -15,6 +15,8 @@ const countOnly = function(data, count) {
   return counted;
 };
 
+module.exports = countOnly;
+
 /*
 const firstNames = [
   "Karl",

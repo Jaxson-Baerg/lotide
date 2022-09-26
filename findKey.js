@@ -8,6 +8,8 @@ const findKeys = function(obj, func) {
   }
 };
 
+module.exports = findKey;
+
 /*
 assertEqual(findKeys({
   "Blue Hill": { stars: 1 },
